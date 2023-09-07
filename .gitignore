@@ -1,0 +1,18 @@
+# physicell
+*.o
+*.exe
+**/.DS_Store
+**/._.DS_Store
+**/studio_debug.log
+Makefile-backup
+output/
+output/empty.txt
+PhysiCell_settings-backup.xml
+project
+
+# nextflow
+flow/work/
+flow/.nextflow/
+flow/.nextflow.log*
+
+# prj specific
