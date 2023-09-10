@@ -1,6 +1,6 @@
 # physicellflow
 
-this is an UNOFFICIAL [physicell](https://github.com/MathCancer/PhysiCell) ecosystem reop!
+this is an unofficial [physicell](https://github.com/MathCancer/PhysiCell) ecosystem reop!
 this is a template repo for making [nextflow](https://www.nextflow.io/index.html) based physicell model parameter scans.
 nextflow only runs on [POSIX](https://en.wikipedia.org/wiki/POSIX) operating systems.
 
@@ -17,10 +17,9 @@ basic physicell installation on your operating system, to have all the dependenc
 + https://github.com/physicell-training/ws2023/tree/main/setup
 
 repository based physicell installation (at repository root):
-1. `git clone --depth=1  https://github.com/MathCancer/PhysiCell.git`
-1. `rm -fr PhysiCell/.git PhysiCell/.github PhysiCell/.gitignore PhysiCell/.travis.yml`
+1. https://sourceforge.net/projects/physicell/
 1. `git add PhysiCell`
-1. `git commit -m'@ prj : install latest PhysiCell version.'`
+1. `git commit -m'@ prj : install latest PhysiCell version.`
 
 once you have a prototyped, running physicell model,
 copy the Physicell\_settings.xml, rules.csv, prj\_seeding.csv files into the flow directory,
