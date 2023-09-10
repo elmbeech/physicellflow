@@ -27,7 +27,6 @@ and link the compiled binary to the flow/bin folder and name it physicell.
 1. `cp PhysiCell/config/Physicell_settings.xml flow/`
 1. `cp PhysiCell/config/rules.csv flow/`
 1. `cp PhysiCell/config/prj_seeding.csv flow/`
-1. `cp PhysiCell/config/rules.csv flow/`
 1. `cd flow/bin`
 1. `ln -s ../../PhysiCell/project physicell`
 
