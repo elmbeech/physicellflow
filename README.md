@@ -1,5 +1,10 @@
 # physicellflow
 
+this is an UNOFFICIAL [physicell](https://github.com/MathCancer/PhysiCell) ecosystem reop!
+this is a template repo for making [nextflow](https://www.nextflow.io/index.html) based physicell model parameter scans.
+nextflow only runs on [POSIX](https://en.wikipedia.org/wiki/POSIX) operating systems.
+
+
 ## concept
 1. one repository per model
 1. the complete physicell source code is an integral part of every physicell agent based model.
