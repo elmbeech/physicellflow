@@ -1,11 +1,21 @@
 /* work process specification */
 process RUNPHYSICELL {
     /* directive (https://www.nextflow.io/docs/latest/process.html#directives) */
-    //debug true
-    executor 'local'  //'local','slurm' (nextflow.config)
-    //maxForks  //cpu -1 (default)
-    publishDir "$projectDir"+'/output/', mode: 'move'  //'copy','move','symlink' (default)
-    tag "$s_parameter"
+    // bigred200 slurm : https://kb.iu.edu/d/awrz
+    debug false  //false true : track command stdout
+
+    executor 'local'  //'local','slurm'
+    cpus = 6  //bigred200: 48 cpu-per-node (1 slurmjob = 1 process = 1 task; OMP_NUM_THREADS = cpus; 48 cpu-per-node / 8 cpu-per-task = 6 process-per-node)
+    maxForks = cpus - 1  //default: cpus - 1
+    memory = "${2*cpus}G"  //bigread200: 56G  (56G / 48 cpu = 1.166G)
+    if (executor == 'slurm') {
+        clusterOptions = "-A r00000 --nodes=1 --cpus-per-task=${cpus} --mail-type=fail --mail-user=ME@iu.edu"
+        queue = 'general'   // partition
+        time = '12h'
+    }
+
+    tag "${s_parammanipu}"
+    publishDir "${projectDir}"+'/output/', mode: 'move'  //'copy','move','symlink' (default)
 
     /* element */
     input:
