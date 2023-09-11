@@ -133,7 +133,8 @@ def runphysicell(s_settingxml, s_rulecsv, s_seedingcsv, s_paramjson, s_parammani
 
     # run dmc
     os.mkdir(s_out)
-    os.system(f'physicell {s_runsettingxml}')
+    if (os.system(f'physicell {s_runsettingxml}') != 0):
+        os.system(f'./physicell {s_runsettingxml}')
     print('runphysicell finished!')
 
 
