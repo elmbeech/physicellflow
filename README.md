@@ -42,6 +42,5 @@ basic nextflow installation on your operating system:
 parameter scan and data analysis working directory.
 + `flow/bin`: folder with shell scripts detected by nextflow.
 + `flow/hackpy`: folder for own python3 library code, which is not yet and probably never pip released.
-+ `flow/nextflow.config`: nextflow configuration, utilized to specify slurm settings.  # EDIT ME
 + `flow/YYYYMMDD_parameterscan.nf`: nextflow parameter scan workflow template.  # EDIT ME
 + `flow/parameter_scan.json`: parameter manipulation json file template.  # EDIT ME
