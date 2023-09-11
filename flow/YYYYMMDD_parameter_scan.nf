@@ -10,7 +10,7 @@ process RUNPHYSICELL {
     memory = "${2*cpus}G"  //bigread200: 56G  (56G / 48 cpu = 1.166G)
     if (executor == 'slurm') {
         clusterOptions = "-A r00000 --nodes=1 --cpus-per-task=${cpus} --mail-type=fail --mail-user=ME@iu.edu"
-        queue = 'general'   // partition
+        queue = 'general'  // partition
         time = '12h'
     }
 
