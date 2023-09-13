@@ -31,7 +31,7 @@ process RUNPHYSICELL {
 
     script:
         """
-        runphysicell.py -r $p_rule -i $p_seed -p $p_paramjson -t $s_take $p_setting $s_parammanipu
+        runphysicell.py $p_setting $p_paramjson $s_parammanipu -r $p_rule -s $p_seed -t $s_take
         """
 }
 

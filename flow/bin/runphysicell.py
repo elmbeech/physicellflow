@@ -97,6 +97,7 @@ def runphysicell(s_settingxml, s_rulecsv, s_seedingcsv, s_paramjson, s_parammani
         df_rule = pd.read_csv(s_rulecsv, comment='/', header=None)
         df_rule.columns = ['celltype','signal','direction','behavoir','saturation','halfmax','hillpower','applytodead']
         df_rule.index = [re.sub('[^A-Za-z0-9]','',s) for s in (df_rule.celltype + df_rule.signal + df_rule.direction + df_rule.behavoir)]
+        print(f"{s_rulecsv} loaded!\nparameter column labels: ['saturation','halfmax','hillpower','applytodead']\nrule row labels are: {df_rule.index}")
 
         # manipulate parameters in setting xml and rule csv
         if not (s_parammanipu is None):
@@ -147,58 +148,55 @@ if __name__ == '__main__':
         description = 'manipulates template seetings.xml and rules.csv files for physicell parameter scan.',
         epilog = 'may the force be with you!',
     )
-    # model
+    # model part1
     parser.add_argument(
         'settingxml',
         #nargs = 1,
         help = 'PhysiCell_seetings.xml model file.'
     )
+    # parameters
     parser.add_argument(
-        '-r', '--rule',
-        default = None,  # default specified in settings.xml
-        help = 'to specify an alternative rules.csv model file to the one specified in the settings.xml file.',
-        # rules.csv header 1.13.1: celltype,signal,direction,behavoir,saturation,halfmax,hillpower,applytodead
+        'param',
+        nargs = '?',
+        default = None,
+        help = 'to specify a parameter_scan.json file.'
     )
     # parameter manipulation
     parser.add_argument(
         'manipu',
         nargs = '?',
         default = None,  # no parameter manipulation
-        help = 'to specify which parameter settings set in parameter.json to use to manipulate the template model seetings.xml and rules.csv files.'
+        help = 'to specify which parameter settings set in parameter_scan.json to use to manipulate the template model seetings.xml and rules.csv files.'
+    )
+    # model part2
+    parser.add_argument(
+        '-r', '--rule',
+        default = None,  # default specified in settings.xml
+        help = 'to specify an alternative rules.csv model file to the one specified in the settings.xml file.',
+        # rules.csv header 1.13.1: celltype,signal,direction,behavoir,saturation,halfmax,hillpower,applytodead
     )
     # seeding
     parser.add_argument(
-        '-i', '--init',
+        '-s', '--seed',
         default = None,  # default specified in settings.xml
         help = 'to specify an alternative cells.csv seeding (initial condition) file to the one specified in the settings.xml file.',
-    )
-    # parameters
-    parser.add_argument(
-        '-p', '--param',
-        default = None,
-        help = 'to specify a parameter scan json file.'
     )
     # takes
     parser.add_argument(
         '-t', '--take',
         #type = int,
         default = 'a',
-        help = 'to specify the take per parameter setting label.',
+        help = 'to specify the take (repeat) label. default is take "a".',
     )
     # parse arguments
     args = parser.parse_args()
     print(args)
 
-    # parameter sanity check
-    if not (args.manipu is None):
-        if (args.param is None):
-            sys.exit(f'Error @ runphysicell : parameter set {args.manipu} for manipulation specified, but -p path/to/parameter.json argumnet, where the set can be found, is missing!')
-
     # processing
     runphysicell(
         s_settingxml = args.settingxml,
         s_rulecsv = args.rule,
-        s_seedingcsv = args.init,
+        s_seedingcsv = args.seed,
         s_paramjson = args.param,
         s_parammanipu = args.manipu,
         s_take = args.take,
